@@ -19,9 +19,9 @@ basLocalizeModule.directive("ngLocalize", function() {
             element.html(resolveObject(attrs.ngLocalize, window.translations[data]));
          });
 
-         scope.$watch(attrs.ngLocalize, function (path) {
+         /*scope.$watch(attrs.ngLocalize, function (path) {
             element.html(resolveObject(path, window.translations[localStorage.getItem("language") || 'en']));
-         });
+         });*/
 
       }
    };

@@ -1,6 +1,6 @@
 {
   "name": "baslocalize",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Module for localize content in AngularJS project.",
   "main": "localize.module.js",
   "scripts": {
