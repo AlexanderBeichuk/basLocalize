@@ -27,7 +27,7 @@ in controller for change language:
 ```js
 app.controller('homeController', [ '$scope', 'basLocalizeService', function ($scope, basLocalizeService) {
     $scope.changeLanguage = function(currentLanguage) {  //currentLanguage = cn
-        basLocalizeService.changeLanguage(currentLanguage);
+        basLocalizeService.changeLanguage(currentLanguage, defaultLanguage);
             };
     }])
 ```
