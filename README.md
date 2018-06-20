@@ -7,7 +7,7 @@ var app = angular.module('appModule', [
 ```
 For get current language:
 ```js
-var language = localStorage.getItem("language") || 'en';
+var language = localStorage.getItem("language");
 ```
 
 We have variable for each languages with content:
@@ -19,9 +19,14 @@ window.translations.cn = {
 };
 ```
 
-Use your variable in
+For set default language:
 ```js
-basLocalizeService.changeLanguage(currentLanguage)
+basLocalizeService.setDefaultLanguage(defaultLanguage);
+```
+
+Use your variable in:
+```js
+basLocalizeService.changeLanguage(currentLanguage);
 ```
 in controller for change language:
 ```js
