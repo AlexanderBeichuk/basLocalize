@@ -9,20 +9,18 @@ basLocalizeModule.directive("ngLocalize", function() {
         return path.split('.').reduce(function(prev, curr) {
           return prev ? prev[curr] : undefined
         }, obj || self);
-      };
-      var language = localStorage.getItem('language');
+      }
 
       function changeLanguage(language) {
-        element.html(resolveObject(attrs.ngLocalize, window.translations[window.translations[language] ? language : localStorage.getItem('defaultLanguage')]));
+        element.html(resolveObject(attrs.ngLocalize, window.translations[window.translations[language] ? language : localStorage.getItem('_basDefaultLanguage')]));
       }
+
+      var language = localStorage.getItem('language');
 
       changeLanguage(language);
 
       scope.$on('baslanguage:change', function (event, data) {
-        if (data.defaultLanguage) {
-          localStorage.setItem('defaultLanguage', data.defaultLanguage);
-        }
-        changeLanguage(data.currentLanguage);
+        changeLanguage(data);
       })
 
        /*scope.$watch(attrs.ngLocalize, function (path) {
@@ -36,12 +34,13 @@ basLocalizeModule.directive("ngLocalize", function() {
 basLocalizeModule.factory('basLocalizeService', ['$rootScope', function ($rootScope) {
 
   return {
-    changeLanguage: function (currentLanguage, defaultLanguage) {
-      $rootScope.$broadcast('baslanguage:change', {
-        currentLanguage: currentLanguage,
-        defaultLanguage: defaultLanguage
-      });
+    setDefaultLanguage: function(defaultLanguage) {
+      localStorage.setItem('_basDefaultLanguage', defaultLanguage);
     },
+
+    changeLanguage: function (currentLanguage) {
+      $rootScope.$broadcast('baslanguage:change', currentLanguage);
+    }
   }
 
 }]);
